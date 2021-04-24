@@ -20,6 +20,21 @@
             <p class="lead">Search the name and get the information about country</p>
             <hr class="my-4">
             <p>Using RestCountries.eu API</p>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Search country</span>
+                        </div>
+                        <input id="userInput" type="text" class="form-control" placeholder="e.g Czech Republic" aria-label="Input phrase"
+                            aria-describedby="basic-addon1">
+                    </div>
+                </div>
+    
+                <div class="col-md-5">
+                    <button type="button" id="searchBtn" class="btn btn-primary mb-3 mb-md-0">Search <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -30,33 +45,12 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">Search country</span>
-                    </div>
-                    <input id="userInput" type="text" class="form-control" placeholder="e.g Czech Republic" aria-label="Input phrase"
-                        aria-describedby="basic-addon1">
-                </div>
-            </div>
-
-            <div class="col-md-5">
-                <button type="button" id="searchBtn" class="btn btn-outline-primary mb-3 mb-md-0">Search <i class="fas fa-arrow-right"></i></button>
-            </div>
-        </div>
-        <div class="tdiv">
+                <div class="tdiv">
             <header>
-                <p class="nadpis">Translation history</p>
+                <p class="nadpis">Search history</p>
                 <button class="btn btn-danger">Delete history</button>
             </header>
-            <table class="table" id="myTable">
-                <thead class="thead-light">
-                    <tr>
-                        <th>Original phrase</th>
-                        <th>Translated phrase</th>
-                    </tr> 
-                </thead>
+            <table class="table" class="myTable">
                 <tbody id="tbody">
                 </tbody>
               </table>                       
@@ -72,7 +66,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="js/main.js" async defer></script>
 </body>
-
+    <script type="text/javascript" src="js/main.js"></script>
 </html>
