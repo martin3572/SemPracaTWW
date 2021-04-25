@@ -68,13 +68,13 @@ function LoadLastSearched(){
         if(i%2!=0){    
             var row = document.createElement("tr");
             var cell = document.createElement("td");
-            var cellText = document.createTextNode(localStorage.getItem(i));
+            var cellText = document.createTextNode();
             cell.appendChild(cellText);
             row.appendChild(cell);
         }
         else{
             var cell = document.createElement("td");
-            var cellText = document.createTextNode(TimeElapsed(localStorage.getItem(i)));
+            var cellText = document.createTextNode();
             cell.appendChild(cellText);
             row.appendChild(cell);
             tbodyRef.prepend(row);
@@ -83,19 +83,6 @@ function LoadLastSearched(){
     }
 }
 
-del.onclick = function(){
-    localStorage.clear();
-    window.location.reload();
-}
-search.onclick = function () {
-    var inputText = userInput.value;
-    if(inputText = ""){
-        alert("Empty");
-    }else{
-        GetData(inputText);
-        AddToHistory();
-    }   
-}
 
 async function GetData(countryName){
     // REST API url endpoint
@@ -103,24 +90,28 @@ async function GetData(countryName){
     console.log.api_url;
     const response = await fetch(api_url)
     const data = await response.json();
-    // let keyArray = Object.keys(data); 
-    // // keyArray = ['a','b','c']
-    // let valuesArray = Object.values(data);
-    // // valuesArray = ['kitten', 'puppy', 'lion'];
-    const {name, population, currency, region, capital, flag} = data[0];
-
-    //var text = document.createTextNode(population);
-    //var body = document.getElementsByClassName("tbody")[0];
-    //body.appendChild(text);
-    var time = new Date();
-    //creating new records to localstorage
-    localStorage.setItem(newID,countryName);
-    localStorage.setItem(newTimeID, time.getTime());
+    return data[0].population;
+    
+    //add to array thet will be returned, then process and display the data
+    //const {name, population, currency, region, capital, flag} = data[0];
     // hide the loading dialog
     
 }
 
-function AddToHistory(){
+function AddToDataTable(data){
+    console.log(data);
+    // let keyArray = Object.keys(data[0]); 
+    // console.log(keyArray.population);
+    // // keyArray = ['a','b','c']
+    // let valuesArray = Object.values(data[0]);
+    // valuesArray = ['kitten', 'puppy', 'lion'];
+}
+
+function AddToHistory(countryName){
+    var time = new Date();
+    //creating new records to localstorage
+    localStorage.setItem(newID,countryName);
+    localStorage.setItem(newTimeID, time.getTime());
     loadingDiv.style.display = 'none';
     // enable translate button
     var table = document.getElementById('myTable');
@@ -137,4 +128,18 @@ function AddToHistory(){
     row.appendChild(cell);
     tbodyRef.prepend(row);
     table.prepend(tbodyRef);
+}
+
+del.onclick = function(){
+    localStorage.clear();
+    window.location.reload();
+}
+search.onclick = function () {
+    var inputText = userInput.value;
+    if(inputText == ""){
+        alert("Empty");
+    }else{
+        AddToHistory(inputText);
+        AddToDataTable(GetData(inputText));
+    }   
 }
