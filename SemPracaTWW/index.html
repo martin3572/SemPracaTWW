@@ -13,45 +13,53 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body onload = "LoadTable()">
-    <div class="container">
-        <div class="jumbotron my-5">
-            <h1 class="display-4"><i class="fas fa-globe-europe"></i> Countries all around the World</h1>
-            <p class="lead">Search the name and get the information about country</p>
-            <hr class="my-4">
-            <p>Using RestCountries.eu API</p>
-                <div class="col-md-8">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Search country</span>
-                        </div>
-                        <input id="userInput" type="text" class="form-control" placeholder="e.g Czech Republic" aria-label="Input phrase"
-                            aria-describedby="basic-addon1">
+<body onload = "LoadTable(), GetData()">
+    <section class="section1">
+        <div class="container">
+            <div class="jumbotron my-5">
+                <h1 class="display-4"><i class="fas fa-globe-europe"></i> Countries all around the World</h1>
+                <p class="lead">Search the name and get the information about country</p>
+                <hr class="my-4">
+                <p>Using RestCountries.eu API</p>
+                    <div class="col-md-8">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Search country</span>
+                            </div>
+                            <input id="userInput" type="text" class="form-control" placeholder="e.g czech" aria-label="Input phrase"
+                                aria-describedby="basic-addon1">
+                        
+                            <button type="button" id="searchBtn" class="btn btn-primary mb-3 mb-md-0">Search <i class="fas fa-arrow-right"></i></button>
                     
-                        <button type="button" id="searchBtn" class="btn btn-primary mb-3 mb-md-0">Search <i class="fas fa-arrow-right"></i></button>
-                
-                    </div>
+                        </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div id="loading" class="container">
-        <div class="alert alert-primary" role="alert">
-            Loading information...
+    
+        <div id="loading" class="container">
+            <div class="alert alert-primary" role="alert">
+                Loading information...
+            </div>
         </div>
-    </div>
+    
+        <div id="error" class="container">
+            <div class="alert alert-danger" role="alert">
+                Please enter the name!
+            </div>
+        </div>
+    </section>
 
-    <div id="countryData" class="content" onload="LoadLastSearched()">
+    <div id="countryData" class="content">
         <div class="data left">
             <div class="tdiv">
                 <table id="countryTable"class="table">
                     <thead class="thead-light">
                       <tr>
                         <th scope="col">Country Details</th>
-                        <th scope="col"></th>
+                        <th id= "cn" scope="col"></th>
                       </tr>
                     </thead>
-                    <tbody class="tbody">
+                    <tbody id="tbodyCountry">
                     <tbody>              
                     </tbody>
                 </table>

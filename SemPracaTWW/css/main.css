@@ -1,5 +1,16 @@
+#error{
+    display: none;
+    text-align: center;
+    margin-top: -30px;
+}
 #loading {
     display: none;
+}
+
+.section1{
+    margin: auto;
+    align-content: center;
+    text-align: center;
 }
 .col-md-8 {
     margin-top: auto;
@@ -44,10 +55,12 @@
 .content{
     display: flex;
 }
-.content-slim{
+
+.countryData{
 }
 .left {
     flex: 0 0 65%;
+    margin-left: 5%;
   }
   
 .right {
