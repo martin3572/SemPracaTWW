@@ -7,7 +7,6 @@ var body = document.getElementsByTagName("body");
 var del = document.querySelector('.btn-danger');
 
 var dataDiv = document.getElementsByClassName("data");
-console.log($(window).width());
 if($(window).width()< 770){
     for(var i = 0; i < dataDiv.length; i++){
         if(dataDiv[i].classList.contains("left")){
@@ -77,8 +76,6 @@ function LoadTable(){
     }
 }
 
-//vyformatovat stranku a data
-
 async function GetData(countryName){
     if(countryName == undefined){
         countryName = localStorage.getItem(localStorage.length-1);
@@ -90,6 +87,7 @@ async function GetData(countryName){
         var api_url = 'https://restcountries.eu/rest/v2/name/'+ countryName;
         const response = await fetch(api_url)
         const data = await response.json();
+
         var tableHead = document.getElementById("cn");
         tableHead.appendChild(document.createTextNode(data[0].name));
 
@@ -105,9 +103,6 @@ async function GetData(countryName){
             if(typeof valuesArray[i] !== "object"){
                 dataArray.push( [ keyArray[i], valuesArray[i] ] );
             }
-            else{
-                //console.log("object: "+ valuesArray[i].length + valuesArray[i]); //handling object variables
-            }
         }
     
         for(var i = 0; i < keyArray.length; i++){
@@ -116,7 +111,6 @@ async function GetData(countryName){
                     var cell = document.createElement("td");
                     console.log("flag?: "+ dataArray[i][j-1]);
                     if(dataArray[i][j-1] == "flag"){
-                        //var cellText = document.createElement("<img src=\""+dataArray[i][j]+"\" height=\"40px\" width=\"60px\" alt=\"flag\"></img>");
                         var cellText = document.createElement('img');
                         cellText.src = dataArray[i][j];
 
@@ -140,10 +134,11 @@ function AddToHistory(countryName){
     newID = localStorage.length+1;
     newTimeID = localStorage.length+2;
     var time = new Date();
+
     //creating new records to localstorage
     localStorage.setItem(newID,countryName);
     localStorage.setItem(newTimeID, time.getTime());
-    // enable translate button
+
     var table = document.getElementById('myTable');
     var tbodyRef = document.getElementsByClassName('tbody')[0];
 
