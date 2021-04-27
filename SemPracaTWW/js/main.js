@@ -6,6 +6,28 @@ var errorDiv = document.querySelector('#error');
 var body = document.getElementsByTagName("body");
 var del = document.querySelector('.btn-danger');
 
+var dataDiv = document.getElementsByClassName("data");
+console.log($(window).width());
+if($(window).width()< 770){
+    for(var i = 0; i < dataDiv.length; i++){
+        if(dataDiv[i].classList.contains("left")){
+            dataDiv[i].classList.remove("left");
+        }else if (dataDiv[i].classList.contains("right")){
+            dataDiv[i].classList.remove("right");
+        }     
+    }
+}else{
+    for(var i = 0; i < dataDiv.length; i++){
+        if(!dataDiv[i].classList.contains("left")){
+            dataDiv[i].classList.add("left");
+        }else if (!dataDiv[i].classList.contains("right")){
+            dataDiv[i].classList.add("right");
+        }     
+    }
+}
+
+
+
 //how ago was the search made
 function TimeElapsed(time){
     var currentTime = new Date()
@@ -71,6 +93,9 @@ async function GetData(countryName){
         var tableHead = document.getElementById("cn");
         tableHead.appendChild(document.createTextNode(data[0].name));
 
+        var table = document.getElementById('countryTable');
+        var tbody = document.getElementById('tbodyCountry');  
+
         let keyArray = Object.keys(data[0]); 
         let valuesArray = Object.values(data[0]);
         var dataArray = new Array();
@@ -78,21 +103,27 @@ async function GetData(countryName){
 
         while ( keyArray[++i] ) { 
             if(typeof valuesArray[i] !== "object"){
-                console.log("not object: "+ valuesArray[i]);
                 dataArray.push( [ keyArray[i], valuesArray[i] ] );
             }
             else{
-                console.log("object: "+ valuesArray[i].length + valuesArray[i]); //handling object variables
+                //console.log("object: "+ valuesArray[i].length + valuesArray[i]); //handling object variables
             }
         }
-        var table = document.getElementById('countryTable');
-        var tbody = document.getElementById('tbodyCountry');  
     
         for(var i = 0; i < keyArray.length; i++){
             var row = document.createElement("tr");
             for(var j = 0; j< 2;j++){          
                     var cell = document.createElement("td");
-                    var cellText = document.createTextNode(dataArray[i][j]);
+                    console.log("flag?: "+ dataArray[i][j-1]);
+                    if(dataArray[i][j-1] == "flag"){
+                        //var cellText = document.createElement("<img src=\""+dataArray[i][j]+"\" height=\"40px\" width=\"60px\" alt=\"flag\"></img>");
+                        var cellText = document.createElement('img');
+                        cellText.src = dataArray[i][j];
+
+                    }
+                    else{
+                        var cellText = document.createTextNode(dataArray[i][j]);
+                    }   
                     cell.appendChild(cellText);
                     row.appendChild(cell);       
             }

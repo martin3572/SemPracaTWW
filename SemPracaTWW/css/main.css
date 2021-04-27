@@ -17,12 +17,14 @@
     display: inline-block;
 }
 .tdiv{
-    width: 70%;
     margin: auto;
-    display: flexbox;
     border-radius: 5px;
+    width: 90%;
  }
 .tbody td{
+    border: 1px solid #e2e2fd;
+}
+#tbodyCountry td{
     border: 1px solid #e2e2fd;
 }
 .tdiv header{
@@ -47,22 +49,27 @@
     align-self: center;
     margin: auto;
 }
-.data{
-    max-width: 540px;
-    border-radius: 5px;
-    min-width: 370px;
+img{
+    height: 40px;
+    width: 60px;
 }
-.content{
-    display: flex;
+.data-section{
+align-items: center;
 }
 
-.countryData{
+.content{
+    align-items: center;
+    display: table;
+    margin: auto;  
 }
+
 .left {
-    flex: 0 0 65%;
-    margin-left: 5%;
+    float: left;
+    width: 400px;
   }
   
 .right {
-    flex: 1;
-  }
+    float: right;
+    width: 400px;
+
+  } 
